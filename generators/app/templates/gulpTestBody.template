@@ -1,0 +1,9 @@
+test.registerTasks({
+  testGlob: ['src/tests/**/*.js'],
+  codeGlob: ['src/**/*.js', '!src/tests/**/*.js'],
+  thresholds: {
+    global: 80,
+    each: 60
+  },
+  outputDir: 'testResults/'
+});

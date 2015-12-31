@@ -1,0 +1,24 @@
+ /* eslint strict:0, no-console:0 */
+'use strict';
+
+const gulp = require('gulp');
+const fs = require('fs');
+global.__package = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+<% gulpHeaders.forEach(function(header) { %>
+<%- include(header); %><% }); %>
+<% gulpBodies.forEach(function(body) { %>
+<%- include(body); %>
+<% }); %>
+/*
+ * Watch for changes to files.
+ */
+gulp.task('watch', [<%- gulpWatchTasks %>], function () {
+  console.log('Watch is running.');
+  console.log('Type ^C to stop the watch process.');
+});
+
+/*
+ * Build the application.
+ */
+gulp.task('build', [<%- gulpBuildTasks %>], function () {
+});

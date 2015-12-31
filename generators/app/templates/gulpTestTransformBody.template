@@ -1,0 +1,9 @@
+test.registerTasks({
+  testGlob: ['lib/tests/**/*.js'],
+  codeGlob: ['lib/**/*.js', '!lib/tests/**/*.js'],
+  thresholds: {
+    global: 80,
+    each: 60
+  },
+  outputDir: 'testResults/'
+});

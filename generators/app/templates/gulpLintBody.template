@@ -1,0 +1,3 @@
+lint.registerTasks({
+  glob: ['src/**/*.js', '!src/public/**/*', '!src/styles/**/*']
+});

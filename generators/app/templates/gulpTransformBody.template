@@ -1,0 +1,5 @@
+transform.registerTasks({
+  glob: ['**/*.js?(x)', '!styles/**/*', '!public/**/*'],
+  inputDir: 'src/',
+  outputDir: 'lib/'
+});

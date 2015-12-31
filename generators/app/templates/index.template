@@ -1,0 +1,13 @@
+/*
+ * Main entry point for this application.
+ */
+
+/* eslint no-console:0 */
+
+console.log('--');
+console.log('Application Started.');
+console.log('Environment: ' + process.env.NODE_ENV);
+
+// TODO: add server module code here
+
+console.log('--');

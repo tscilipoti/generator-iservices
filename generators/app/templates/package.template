@@ -1,0 +1,19 @@
+{
+  "name": "<%- projectName %>",
+  "version": "1.0.0",
+  "private": true,
+  "description": "<%- projectDescription %>",
+  "main": "index.js",
+  "scripts": {
+    "postInstall": "gulp build",
+    "test": "<%- projectScriptTest %>",
+    "build": "gulp build",
+    "watch": "gulp watch"
+  },
+  "dependencies": {
+    <%- projectDependencies %>
+  },
+  "devDependencies": {
+    <%- projectDevDependencies %>
+  }
+}

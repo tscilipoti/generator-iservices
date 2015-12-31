@@ -1,0 +1,5 @@
+style.registerTasks({
+  glob: '**/*.scss',
+  inputDir: 'src/styles/',
+  outputDir: 'dist/styles'
+});

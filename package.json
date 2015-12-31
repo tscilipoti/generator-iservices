@@ -1,0 +1,22 @@
+{
+  "name": "generator-iservices",
+  "version": "1.0.0",
+  "description": "A yeoman generator for iservices apps.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "generators/app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "natewallace@gmail.com",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "yeoman-generator": "^0.22.2"
+  },
+  "devDependencies": {
+    "build-lint": "^1.0.4"
+  }
+}

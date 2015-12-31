@@ -1,0 +1,5 @@
+bundle.registerTasks({
+  inputDir: 'src/apps/',
+  outputDir: 'dist/',
+  version: __package.version
+});

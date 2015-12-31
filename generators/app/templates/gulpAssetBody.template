@@ -1,0 +1,5 @@
+asset.registerTasks({
+  glob: '**/*',
+  inputDir: 'src/public/',
+  outputDir: 'dist/'
+});

@@ -1,0 +1,7 @@
+# Lists files and folders that are not to be deployed to a Heroku slug.
+
+src/
+testResults/
+lib/tests/
+*.md
+.eslintrc

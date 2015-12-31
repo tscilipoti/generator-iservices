@@ -1,0 +1,1 @@
+const bundle = require('build-bundle');
