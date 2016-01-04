@@ -1,0 +1,8 @@
+asset.registerTasks({
+  glob: '*.*',
+  inputDir: 'node_modules/bootstrap-sass/assets/fonts/bootstrap/',
+  outputDir: 'dist/',
+  version: __package.version,
+  name: 'styles/fonts/bootstrap',
+  tasksPrefix: 'bootstrap'
+});

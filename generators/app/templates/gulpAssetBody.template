@@ -1,5 +1,7 @@
 asset.registerTasks({
   glob: '**/*',
   inputDir: 'src/public/',
-  outputDir: 'dist/'
+  outputDir: 'dist/',
+  version: __package.version,
+  name: 'public'
 });

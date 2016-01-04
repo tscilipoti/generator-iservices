@@ -1,0 +1,8 @@
+asset.registerTasks({
+  glob: '*.*',
+  inputDir: 'node_modules/font-awesome/fonts/',
+  outputDir: 'dist/',
+  version: __package.version,
+  name: 'styles/fonts/font-awesome',
+  tasksPrefix: 'fontAwesome'
+});

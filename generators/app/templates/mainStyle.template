@@ -1,0 +1,4 @@
+<% if (includeBootstrap) { %>$icon-font-path: "./fonts/bootstrap/";<% } %>
+<% if (includeFontAwesome) { %>$fa-font-path: "./fonts/font-awesome/";<% } %>
+<% if (includeBootstrap) { %>@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";<% } %>
+<% if (includeFontAwesome) { %>@import "../../node_modules/font-awesome/scss/font-awesome";<% } %>

@@ -40,6 +40,38 @@ module.exports = generators.Base.extend({
       choices: ['asset', 'bundle', 'lint', 'style', 'test', 'transform'],
       default: [],
       when: function (answers) { return answers.projectType === 'custom'; }
+    },
+    { type: 'confirm',
+      name: 'includeBootstrap',
+      message: 'Use bootstrap styles:',
+      default: true,
+      when: function (answers) {
+        switch (answers.projectType) {
+          case 'app server':
+            return true;
+          case 'custom':
+            return answers.projectTypeCustomChoices.find(function (element) { return element === 'style'; }) !== undefined &&
+                   answers.projectTypeCustomChoices.find(function (element) { return element === 'asset'; }) !== undefined;
+          default:
+            return false;
+        }
+      }
+    },
+    { type: 'confirm',
+      name: 'includeFontAwesome',
+      message: 'Use font awesome icons:',
+      default: true,
+      when: function (answers) {
+        switch (answers.projectType) {
+          case 'app server':
+            return true;
+          case 'custom':
+            return answers.projectTypeCustomChoices.find(function (element) { return element === 'style'; }) !== undefined &&
+                   answers.projectTypeCustomChoices.find(function (element) { return element === 'asset'; }) !== undefined;
+          default:
+            return false;
+        }
+      }
     }];
 
     const done = this.async();
@@ -52,15 +84,17 @@ module.exports = generators.Base.extend({
   // create project files
   writing: function () {
     const values = {
-      projectName: this.userInput.projectName,
-      projectDescription: this.userInput.projectDescription,
+      projectName: this.userInput.projectName.replace('"', '\\"'),
+      projectDescription: this.userInput.projectDescription.replace('"', '\\"'),
       projectScriptTest: 'echo \\"Error: no test specified\\" && exit 1',
       projectDependencies: ['"gulp": "^3.9.0"'],
       projectDevDependencies: [],
       gulpHeaders: [],
       gulpBodies: [],
       gulpWatchTasks: [],
-      gulpBuildTasks: []
+      gulpBuildTasks: [],
+      includeBootstrap: this.userInput.includeBootstrap,
+      includeFontAwesome: this.userInput.includeFontAwesome
     };
 
     let components = [];
@@ -86,6 +120,14 @@ module.exports = generators.Base.extend({
           fs.mkdirSync(this.destinationPath('src/public/'));
           values.gulpHeaders.push('gulpAssetHeader.template');
           values.gulpBodies.push('gulpAssetBody.template');
+          if (this.userInput.includeBootstrap) {
+            values.gulpBodies.push('gulpBootstrapBody.template');
+            values.gulpBuildTasks.push('\'bootstrap-asset\'');
+          }
+          if (this.userInput.includeFontAwesome) {
+            values.gulpBodies.push('gulpFontAwesomeBody.template');
+            values.gulpBuildTasks.push('\'fontAwesome-asset\'');
+          }
           values.gulpWatchTasks.push('\'watch-asset\'');
           values.gulpBuildTasks.push('\'asset\'');
           values.projectDependencies.push('"build-asset": "^1.0.0"');
@@ -114,6 +156,14 @@ module.exports = generators.Base.extend({
           values.gulpWatchTasks.push('\'watch-style\'');
           values.gulpBuildTasks.push('\'style\'');
           values.projectDependencies.push('"build-style": "^1.0.0"');
+          if (this.userInput.includeBootstrap) {
+            values.includeBootstrap = true;
+            values.projectDependencies.push('"bootstrap-sass": "^3.3.5"');
+          }
+          if (this.userInput.includeFontAwesome) {
+            values.includeFontAwesome = true;
+            values.projectDependencies.push('"font-awesome": "^4.4.0"');
+          }
           break;
         case 'test':
           fs.mkdirSync(this.destinationPath('src/tests/'));
@@ -153,6 +203,13 @@ module.exports = generators.Base.extend({
       this.templatePath('gulpfile.template'),
       this.destinationPath('gulpfile.js'),
       values);
+
+    if (values.includeBootstrap || values.includeFontAwesome) {
+      this.fs.copyTpl(
+        this.templatePath('mainStyle.template'),
+        this.destinationPath('src/styles/main.scss'),
+        values);
+    }
 
     this.fs.copy(
       this.templatePath('gitignore.template'),
