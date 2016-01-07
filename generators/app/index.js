@@ -15,8 +15,8 @@ module.exports = generators.Base.extend({
     this.userInput = {};
   },
 
-  // get the project name
-  promptingProjectName: function () {
+  // get the project configurations
+  prompting: function () {
     const prompts = [
     { type: 'input',
       name: 'projectName',
@@ -50,8 +50,8 @@ module.exports = generators.Base.extend({
           case 'app server':
             return true;
           case 'custom':
-            return answers.projectTypeCustomChoices.find(function (element) { return element === 'style'; }) !== undefined &&
-                   answers.projectTypeCustomChoices.find(function (element) { return element === 'asset'; }) !== undefined;
+            const choices = answers.projectTypeCustomChoices;
+            return choices.indexOf('style') > -1 && choices.indexOf('asset') > -1;
           default:
             return false;
         }
@@ -66,8 +66,8 @@ module.exports = generators.Base.extend({
           case 'app server':
             return true;
           case 'custom':
-            return answers.projectTypeCustomChoices.find(function (element) { return element === 'style'; }) !== undefined &&
-                   answers.projectTypeCustomChoices.find(function (element) { return element === 'asset'; }) !== undefined;
+            const choices = answers.projectTypeCustomChoices;
+            return choices.indexOf('style') > -1 && choices.indexOf('asset') > -1;
           default:
             return false;
         }
@@ -84,8 +84,8 @@ module.exports = generators.Base.extend({
   // create project files
   writing: function () {
     const values = {
-      projectName: this.userInput.projectName.replace('"', '\\"'),
-      projectDescription: this.userInput.projectDescription.replace('"', '\\"'),
+      projectName: JSON.stringify(this.userInput.projectName),
+      projectDescription: JSON.stringify(this.userInput.projectDescription),
       projectScriptTest: 'echo \\"Error: no test specified\\" && exit 1',
       projectDependencies: ['"gulp": "^3.9.0"'],
       projectDevDependencies: [],
@@ -134,8 +134,8 @@ module.exports = generators.Base.extend({
           break;
         case 'bundle':
           fs.mkdirSync(this.destinationPath('src/apps/'));
-          values.gulpHeaders.push('gulpLintHeader.template');
-          values.gulpBodies.push('gulpLintBody.template');
+          values.gulpHeaders.push('gulpBundleHeader.template');
+          values.gulpBodies.push('gulpBundleBody.template');
           values.gulpWatchTasks.push('\'watch-bundle\'');
           values.gulpBuildTasks.push('\'bundle\'');
           values.projectDependencies.push('"build-bundle": "^1.0.0"');
@@ -144,8 +144,8 @@ module.exports = generators.Base.extend({
           this.fs.copy(
             this.templatePath('eslintrc.template'),
             this.destinationPath('.eslintrc'));
-          values.gulpHeaders.push('gulpBundleHeader.template');
-          values.gulpBodies.push('gulpBundleBody.template');
+          values.gulpHeaders.push('gulpLintHeader.template');
+          values.gulpBodies.push('gulpLintBody.template');
           values.gulpWatchTasks.push('\'watch-lint\'');
           values.projectDevDependencies.push('"build-lint": "^1.0.0"');
           break;
@@ -169,7 +169,7 @@ module.exports = generators.Base.extend({
           fs.mkdirSync(this.destinationPath('src/tests/'));
           values.projectScriptTest = 'gulp test-with-coverage';
           values.gulpHeaders.push('gulpTestHeader.template');
-          if (components.find(function (element) { return element === 'transform'; })) {
+          if (components.indexOf('transform') > -1) {
             values.gulpBodies.push('gulpTestTransformBody.template');
           } else {
             values.gulpBodies.push('gulpTestBody.template');
