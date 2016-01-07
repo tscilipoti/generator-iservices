@@ -49,11 +49,11 @@ module.exports = generators.Base.extend({
         switch (answers.projectType) {
           case 'app server':
             return true;
-          case 'api server':
-            return false;
-          default:  //case 'custom':
+          case 'custom':
             const choices = answers.projectTypeCustomChoices;
             return choices.indexOf('style') > -1 && answers.indexOf('asset') > -1;
+          default:
+            return false;
         }
       }
     },
