@@ -96,7 +96,7 @@ This component can be executed individually with the `gulp bundle` terminal comm
 - `lint` - Adds linting functionality with the [build-lint](https://www.npmjs.com/package/build-lint) package.  A .eslintrc file is created within the root folder of the project and any 
 files with an extension of .js found in the src/ folder or any of it's sub folders excluding src/public/ and src/styles/ will be linted with the `gulp lint` terminal command.
 
-- `Style` - Compiles [Sass](http://sass-lang.com/) files for the project.  Any files with an extension of .scss found in the src/styles/ folder will be compiled
+- `style` - Compiles [Sass](http://sass-lang.com/) files for the project.  Any files with an extension of .scss found in the src/styles/ folder will be compiled
 and output to the dist/*version*/styles folder where *version* corresponds to the version number defined in the package.json file.
 This component can be executed individually with the `gulp style` terminal command or it will be executed as part of the `npm run build` terminal command.
 
