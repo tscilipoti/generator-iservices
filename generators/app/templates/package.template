@@ -1,8 +1,8 @@
 {
-  "name": "<%- projectName %>",
+  "name": <%- projectName %>,
   "version": "1.0.0",
   "private": true,
-  "description": "<%- projectDescription %>",
+  "description": <%- projectDescription %>,
   "main": "index.js",
   "scripts": {
     "postInstall": "gulp build",
