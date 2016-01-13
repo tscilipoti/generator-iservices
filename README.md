@@ -1,4 +1,6 @@
-# generator-iservices (BETA)
+# generator-iservices
+
+This package is currently in **BETA**
 
 ## Overview
 This package is a generator used with the [Yeoman](http://yeoman.io/) application.  
