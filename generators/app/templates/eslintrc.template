@@ -5,6 +5,7 @@
   "rules": {
   },
   "globals": {
-    "__package": true
+    "__package": true,
+    "window": true
   }
 }

@@ -134,8 +134,13 @@ module.exports = generators.Base.extend({
           break;
         case 'bundle':
           fs.mkdirSync(this.destinationPath('src/apps/'));
+          fs.mkdirSync(this.destinationPath('src/apps/framework/'));
           values.gulpHeaders.push('gulpBundleHeader.template');
-          values.gulpBodies.push('gulpBundleBody.template');
+          if (components.indexOf('transform') > -1) {
+            values.gulpBodies.push('gulpBundleTransformBody.template');
+          } else {
+            values.gulpBodies.push('gulpBundleBody.template');
+          }
           values.gulpWatchTasks.push('\'watch-bundle\'');
           values.gulpBuildTasks.push('\'bundle\'');
           values.projectDependencies.push('"build-bundle": "^1.0.0"');

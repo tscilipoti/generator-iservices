@@ -5,6 +5,7 @@
   "description": <%- projectDescription %>,
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "postInstall": "gulp build",
     "test": "<%- projectScriptTest %>",
     "build": "gulp build",

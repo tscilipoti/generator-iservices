@@ -1,0 +1,8 @@
+bundle.registerTasks({
+  inputDir: 'src/apps/',
+  outputDir: 'dist/',
+  version: __package.version,
+  name: 'apps',
+  buildHtmlDir: 'lib/apps/',
+  tasksDependencies: ['transform']
+});
