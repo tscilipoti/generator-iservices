@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node .",
     "postInstall": "gulp build",
-    "test": "<%- projectScriptTest %>",
+    "test": <%- projectScriptTest %>,
     "build": "gulp build",
     "watch": "gulp watch"
   },
