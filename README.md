@@ -4,7 +4,7 @@ This package is currently in **BETA**
 
 ## Overview
 This package is a generator used with the [Yeoman](http://yeoman.io/) application.  
-It can be used to generate different kinds of iServices projects.
+It can be used to generate different kinds of iServices projects as well as different types of files after a project has been created.
 
 ## Guide
 
@@ -61,7 +61,7 @@ The following describes the command to execute from the terminal as well as what
 
 - `npm run watch` - This is a long running task that will listen for changes to files in your project and perform builds when those files change.
 
-## Project Structure
+### Project Structure
 
 Regardless of which options you choose, the following files and folders will always be created for your project.
 
@@ -110,6 +110,18 @@ This component can be executed individually with the `npm test` terminal command
 - `transform` - Transforms ECMAScript 6 compliant javascript code to ECMAScript 5 compliant javascript code using the [build-transform](https://www.npmjs.com/package/build-transform) package.
 All files with an extension of .js or .jsx found in the src/ folder or any sub folder excluding src/styles and src/public will be transformed and output to the lib/ folder
 This component can be executed individually with the `gulp transform` terminal command or it will be executed as part of the `npm run build` terminal command.
+
+## Guide (Flux)
+
+There are a number of sub generators that can be used to create various classes that implement different objects in the Flux pattern.  The classes created
+make use of the [flux-angular2](https://www.npmjs.com/package/flux-angular2) package in their implementations so this package will need to be installed to use these sub generators.
+
+Run any of the following terminal commands within the folder you want to create a new class in.
+
+- `yo iservices:flux-page` - Create a new class that inherits the Page class.
+- `yo iservices:flux-store` - Create a new class that inherits the Store class.
+- `yo iservices:flux-view` - Create a new class that inherits the View class.
+- `yo iservices:flux-controllerView` - Create a new class that inhertis the ControllerView class.
 
 
 

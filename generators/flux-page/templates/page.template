@@ -1,0 +1,33 @@
+import Flux from 'flux-angular2';
+
+/**
+ * An implementation of a Page.
+ */
+class <%- className %> extends Flux.Page {
+
+  /**
+   * @constructor
+   * @param {Object} [options] - Options passed through to the Flux.Page class.
+   */
+  constructor(options) {
+    super(options);
+  }
+
+  /**
+   * Get the main view for this page.
+   * @returns {View} - The main view for this page.
+   */
+  getComponent() {
+    return null;
+  }
+
+  /**
+   * Get the properties for the main view of this page.
+   * @returns {Object} - The properties for the main view of this page.
+   */
+  getProps() {
+    return {};
+  }
+}
+
+export default <%- className %>;

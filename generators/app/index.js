@@ -21,7 +21,7 @@ module.exports = generators.Base.extend({
     { type: 'input',
       name: 'projectName',
       message: 'Enter the project name:',
-      default: this.appname
+      default: this.appname.replace(' ', '-')
     },
     { type: 'input',
       name: 'projectDescription',
@@ -40,6 +40,27 @@ module.exports = generators.Base.extend({
       choices: ['asset', 'bundle', 'lint', 'style', 'test', 'transform'],
       default: [],
       when: function (answers) { return answers.projectType === 'custom'; }
+    },
+    { type: 'confirm',
+      name: 'includeExpress',
+      message: 'Use Express HTTP server:',
+      default: true
+    },
+    { type: 'confirm',
+      name: 'includeFlux',
+      message: 'Use Flux pattern for UI',
+      default: true,
+      when: function (answers) {
+        switch (answers.projectType) {
+          case 'app server':
+            return true;
+          case 'custom':
+            const choices = answers.projectTypeCustomChoices;
+            return choices.indexOf('bundle') > -1;
+          default:
+            return false;
+        }
+      }
     },
     { type: 'confirm',
       name: 'includeBootstrap',
@@ -194,6 +215,14 @@ module.exports = generators.Base.extend({
       }
     }.bind(this));
 
+    if (this.userInput.includeExpress) {
+      values.projectDependencies.push('"express": "^4.13.4"');
+    }
+
+    if (this.userInput.includeFlux) {
+      values.projectDependencies.push('"flux-angular2": "^1.0.0"');
+    }
+
     values.gulpWatchTasks = values.gulpWatchTasks.join(', ');
     values.gulpBuildTasks = values.gulpBuildTasks.join(', ');
     values.projectDependencies = values.projectDependencies.join(',\n    ');
@@ -228,9 +257,15 @@ module.exports = generators.Base.extend({
       this.templatePath('README.template'),
       this.destinationPath('README.md'));
 
-    this.fs.copy(
-      this.templatePath('index.template'),
-      this.destinationPath('index.js'));
+    if (this.userInput.includeExpress) {
+      this.fs.copy(
+        this.templatePath('indexExpress.template'),
+        this.destinationPath('index.js'));
+    } else {
+      this.fs.copy(
+        this.templatePath('index.template'),
+        this.destinationPath('index.js'));
+    }
   },
 
   // do npm installs

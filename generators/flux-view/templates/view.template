@@ -1,0 +1,57 @@
+import Flux from 'flux-angular2';
+
+/**
+ * An implementation of a Flux View.
+ */
+class <%- className %> extends Flux.View {
+
+  /**
+   * Initialize this view.
+   * @returns {void}
+   */
+  onInit() {
+  }
+
+  /**
+   * Get the annotaitons that define this view.
+   */
+  static get annotations() {
+    return Flux.View.annotate(<%- className %>);
+  }
+
+  /**
+   * Get the selector used by the framework to identify this view in templates.
+   * @returns {String} - The selector to use for this view.
+   */
+  static getSelector() {
+    return '<%- className %>';
+  }
+
+  /**
+   * Get the inputs that this view expects.
+   * @returns {Array} - An array of strings that identify the inputs for this view.
+   */
+  static getInputs() {
+    return []; // i.e 'props.pOne', 'props.pTwo', etc.
+  }
+
+  /**
+   * Get additional views that are used in the template.
+   * @returns {Array} - An array of types that are used in the template.
+   */
+  static getDirectives() {
+    return [];
+  }
+
+  /**
+   * Get the template that defines how this view is rendered.
+   * @returns {String} - The template that defines how this view is rendered.
+   */
+  static getTemplate() {
+    return (`<div>
+      <span>example</span>
+    </div>`);
+  }
+}
+
+export default <%- className %>;

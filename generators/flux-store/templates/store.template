@@ -1,0 +1,17 @@
+import Flux from 'flux-angular2';
+
+/**
+ * An implementation of a Flux Store.
+ */
+class <%- className %> extends Flux.Store {
+
+  /**
+   * @constructor
+   */
+  constructor() {
+    super();
+  }
+
+}
+
+export default <%- className %>;
