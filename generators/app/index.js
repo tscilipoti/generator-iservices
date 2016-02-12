@@ -193,7 +193,7 @@ module.exports = generators.Base.extend({
           break;
         case 'test':
           fs.mkdirSync(this.destinationPath('src/tests/'));
-          values.projectScriptTest = 'gulp test-with-coverage';
+          values.projectScriptTest = '"gulp test-with-coverage"';
           values.gulpHeaders.push('gulpTestHeader.template');
           if (components.indexOf('transform') > -1) {
             values.gulpBodies.push('gulpTestTransformBody.template');
