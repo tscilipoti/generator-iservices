@@ -112,6 +112,8 @@ module.exports = generators.Base.extend({
       projectDevDependencies: [],
       gulpHeaders: [],
       gulpBodies: [],
+      gulpDevHeaders: [],
+      gulpDevBodies: [],
       gulpWatchTasks: [],
       gulpBuildTasks: [],
       includeBootstrap: this.userInput.includeBootstrap,
@@ -170,8 +172,8 @@ module.exports = generators.Base.extend({
           this.fs.copy(
             this.templatePath('eslintrc.template'),
             this.destinationPath('.eslintrc'));
-          values.gulpHeaders.push('gulpLintHeader.template');
-          values.gulpBodies.push('gulpLintBody.template');
+          values.gulpDevHeaders.push('gulpLintHeader.template');
+          values.gulpDevBodies.push('gulpLintBody.template');
           values.gulpWatchTasks.push('\'watch-lint\'');
           values.projectDevDependencies.push('"build-lint": "^1.0.0"');
           break;
@@ -194,11 +196,11 @@ module.exports = generators.Base.extend({
         case 'test':
           fs.mkdirSync(this.destinationPath('src/tests/'));
           values.projectScriptTest = '"gulp test-with-coverage"';
-          values.gulpHeaders.push('gulpTestHeader.template');
+          values.gulpDevHeaders.push('gulpTestHeader.template');
           if (components.indexOf('transform') > -1) {
-            values.gulpBodies.push('gulpTestTransformBody.template');
+            values.gulpDevBodies.push('gulpTestTransformBody.template');
           } else {
-            values.gulpBodies.push('gulpTestBody.template');
+            values.gulpDevBodies.push('gulpTestBody.template');
           }
           values.projectDevDependencies.push('"build-test": "^1.0.0"');
           break;

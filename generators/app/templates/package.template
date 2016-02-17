@@ -4,9 +4,12 @@
   "private": true,
   "description": <%- projectDescription %>,
   "main": "index.js",
+  "engines": {
+    "node": ">=4.2.1"
+  },  
   "scripts": {
     "start": "node .",
-    "postInstall": "gulp build",
+    "postinstall": "gulp build",
     "test": <%- projectScriptTest %>,
     "build": "gulp build",
     "watch": "gulp watch"

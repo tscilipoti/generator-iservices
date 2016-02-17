@@ -10,15 +10,22 @@ global.__package = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 <%- include(body); %>
 <% }); %>
 /*
- * Watch for changes to files.
- */
-gulp.task('watch', [<%- gulpWatchTasks %>], function () {
-  console.log('Watch is running.');
-  console.log('Type ^C to stop the watch process.');
-});
-
-/*
  * Build the application.
  */
 gulp.task('build', [<%- gulpBuildTasks %>], function () {
 });
+
+if (process.env.NODE_ENV !== 'production') {
+<% gulpDevHeaders.forEach(function(header) { %>
+<%- include(header); %><% }); %>
+<% gulpDevBodies.forEach(function(body) { %>
+<%- include(body); %>
+<% }); %>
+  /*
+   * Watch for changes to files.
+   */
+  gulp.task('watch', [<%- gulpWatchTasks %>], function () {
+    console.log('Watch is running.');
+    console.log('Type ^C to stop the watch process.');
+  });
+}

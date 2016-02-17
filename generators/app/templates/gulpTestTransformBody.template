@@ -1,15 +1,15 @@
-test.registerTasks({
-  testGlob: ['lib/tests/**/*.js'],
-  codeGlob: ['lib/**/*.js', '!lib/tests/**/*.js'],
-  thresholds: {
-    global: {
-      statements: 80,
-      branches: 50,
-      lines: 80,
-      functions: 80
+  test.registerTasks({
+    testGlob: ['lib/tests/**/*.js'],
+    codeGlob: ['lib/**/*.js', '!lib/tests/**/*.js'],
+    thresholds: {
+      global: {
+        statements: 80,
+        branches: 50,
+        lines: 80,
+        functions: 80
+      },
+      each: 50
     },
-    each: 50
-  },
-  outputDir: 'testResults/',
-  tasksDependencies: ['transform']
-});
+    outputDir: 'testResults/',
+    tasksDependencies: ['transform']
+  });

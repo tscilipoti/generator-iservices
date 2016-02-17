@@ -1,1 +1,1 @@
-const lint = require('build-lint');
+  const lint = require('build-lint');
