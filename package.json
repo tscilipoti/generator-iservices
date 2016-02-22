@@ -1,12 +1,16 @@
 {
   "name": "generator-iservices",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A yeoman generator for iservices apps.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
-    "generators/app"
+    "generators/app",
+    "generators/flux-controllerView",
+    "generators/flux-page",
+    "generators/flux-store",
+    "generators/flux-view"
   ],
   "keywords": [
     "yeoman-generator"
