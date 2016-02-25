@@ -1,6 +1,6 @@
   test.registerTasks({
     testGlob: ['lib/tests/**/*.js'],
-    codeGlob: ['lib/**/*.js', '!lib/tests/**/*.js'],
+    codeGlob: ['lib/**/*.js', '!lib/tests/**/*.js', '!lib/**/*.html.js'],
     thresholds: {
       global: {
         statements: 80,

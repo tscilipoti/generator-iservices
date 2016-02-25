@@ -15,8 +15,7 @@ global.__package = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 gulp.task('build', [<%- gulpBuildTasks %>], function () {
 });
 
-if (process.env.NODE_ENV !== 'production') {
-<% gulpDevHeaders.forEach(function(header) { %>
+if (process.env.NODE_ENV !== 'production') {<% gulpDevHeaders.forEach(function(header) { %>
 <%- include(header); %><% }); %>
 <% gulpDevBodies.forEach(function(body) { %>
 <%- include(body); %>
