@@ -109,7 +109,7 @@ module.exports = generators.Base.extend({
       projectDescription: JSON.stringify(this.userInput.projectDescription),
       projectScriptTest: JSON.stringify('echo "Error: no test specified" && exit 1'),
       projectDependencies: ['"gulp": "^3.9.0"'],
-      projectDevDependencies: [],
+      projectDevDependencies: ['"gulp-watch": "^4.3.5"'],
       gulpHeaders: [],
       gulpBodies: [],
       gulpDevHeaders: [],

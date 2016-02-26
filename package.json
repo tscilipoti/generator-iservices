@@ -1,6 +1,6 @@
 {
   "name": "generator-iservices",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A yeoman generator for iservices apps.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
