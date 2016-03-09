@@ -21,6 +21,12 @@ if (process.env.NODE_ENV !== 'production') {<% gulpDevHeaders.forEach(function(h
 <%- include(body); %>
 <% }); %>
   /*
+   * Test the application.
+   */
+  gulp.task('test', [<%- gulpTestTasks %>], function () {
+  });
+
+  /*
    * Watch for changes to files.
    */
   gulp.task('watch', [<%- gulpWatchTasks %>], function () {

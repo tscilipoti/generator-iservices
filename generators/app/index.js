@@ -116,6 +116,7 @@ module.exports = generators.Base.extend({
       gulpDevBodies: [],
       gulpWatchTasks: [],
       gulpBuildTasks: [],
+      gulpTestTasks: [],
       includeBootstrap: this.userInput.includeBootstrap,
       includeFontAwesome: this.userInput.includeFontAwesome
     };
@@ -174,6 +175,7 @@ module.exports = generators.Base.extend({
             this.destinationPath('.eslintrc'));
           values.gulpDevHeaders.push('gulpLintHeader.template');
           values.gulpDevBodies.push('gulpLintBody.template');
+          values.gulpTestTasks.push('\'lint\'');
           values.gulpWatchTasks.push('\'watch-lint\'');
           values.projectDevDependencies.push('"build-lint": "^1.0.0"');
           break;
@@ -195,7 +197,7 @@ module.exports = generators.Base.extend({
           break;
         case 'test':
           fs.mkdirSync(this.destinationPath('src/tests/'));
-          values.projectScriptTest = '"gulp test-with-coverage"';
+          values.projectScriptTest = '"gulp test"';
           values.gulpDevHeaders.push('gulpTestHeader.template');
           if (components.indexOf('transform') > -1) {
             values.gulpDevBodies.push('gulpTestTransformBody.template');
@@ -203,6 +205,7 @@ module.exports = generators.Base.extend({
             values.gulpDevBodies.push('gulpTestBody.template');
           }
           values.projectDevDependencies.push('"build-test": "^1.0.0"');
+          values.gulpTestTasks.push('\'test-with-coverage\'');
           break;
         case 'transform':
           fs.mkdirSync(this.destinationPath('src/local/'));
@@ -227,6 +230,7 @@ module.exports = generators.Base.extend({
 
     values.gulpWatchTasks = values.gulpWatchTasks.join(', ');
     values.gulpBuildTasks = values.gulpBuildTasks.join(', ');
+    values.gulpTestTasks = values.gulpTestTasks.join(', ');
     values.projectDependencies = values.projectDependencies.join(',\n    ');
     values.projectDevDependencies = values.projectDevDependencies.join(',\n    ');
 
